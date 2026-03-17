@@ -342,6 +342,67 @@ body[data-page="theory"] .model-card p {
   line-height: 1.56;
 }
 
+.source-log {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(140, 184, 230, 0.28);
+}
+
+.source-log ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1rem;
+}
+
+.source-log li {
+  margin-bottom: 0.35rem;
+}
+
+.evidence-list {
+  margin: 0.6rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.evidence-item {
+  background: rgba(4, 18, 38, 0.82);
+  border: 1px solid rgba(140, 188, 236, 0.24);
+  border-radius: 8px;
+  padding: 0.8rem 0.9rem;
+}
+
+.evidence-item p {
+  margin: 0.25rem 0;
+}
+
+.screenshot-grid {
+  margin-top: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.shot-card {
+  margin: 0;
+  border: 1px solid rgba(140, 188, 236, 0.24);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(3, 13, 30, 0.72);
+}
+
+.shot-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.shot-card figcaption {
+  padding: 0.45rem 0.6rem 0.55rem;
+  font-size: 0.9rem;
+  color: var(--ink-dim);
+}
+
 .article .dek {
   margin-top: 0.45rem;
   color: var(--ink-dim);
@@ -396,6 +457,10 @@ body[data-page="theory"] .model-card p {
   }
 
   .model-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .screenshot-grid {
     grid-template-columns: 1fr;
   }
 }
