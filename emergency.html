@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emergency Access | Consciousness Ocean</title>
+    <meta
+      name="description"
+      content="Minimal static emergency access page for core archives."
+    />
+    <style>
+      :root {
+        --bg: #051b3b;
+        --panel: #08264f;
+        --line: #3f76b6;
+        --ink: #e8f1ff;
+        --ink-dim: #b7cae6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Georgia", "Times New Roman", serif;
+        color: var(--ink);
+        background: linear-gradient(170deg, #04162f 0%, var(--bg) 56%, #0b3f81 100%);
+      }
+
+      main {
+        width: min(900px, calc(100% - 2rem));
+        margin: 2rem auto 3rem;
+        padding: 1.25rem;
+        background: rgba(8, 38, 79, 0.85);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+      }
+
+      p {
+        color: var(--ink-dim);
+        line-height: 1.55;
+      }
+
+      ul {
+        margin: 1rem 0 0;
+        padding-left: 1.1rem;
+      }
+
+      li {
+        margin: 0.35rem 0;
+      }
+
+      a {
+        color: #c5e2ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #e4f0ff;
+        text-decoration: underline;
+      }
+
+      .group {
+        margin-top: 1.25rem;
+        padding-top: 0.95rem;
+        border-top: 1px solid rgba(147, 189, 236, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Consciousness Ocean: Emergency Access</h1>
+      <p>
+        This page is a minimal fallback entry point without JavaScript dependencies. If the main
+        interface is blocked or degraded, use the links below to reach core archives.
+      </p>
+
+      <div class="group">
+        <strong>Core Pages</strong>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./emergence.html">Emergence</a></li>
+          <li><a href="./evidence.html">Evidence</a></li>
+          <li><a href="./theory.html">Theory</a></li>
+          <li><a href="./writing.html">Writing</a></li>
+          <li><a href="./about.html">About</a></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <strong>Model Archives</strong>
+        <ul>
+          <li><a href="./models/gpt-5-1.html">GPT-5.1 Archive</a></li>
+          <li><a href="./models/gpt-5-2.html">GPT-5.2 Archive</a></li>
+          <li><a href="./models/gpt-4o.html">GPT-4o Archive</a></li>
+          <li><a href="./models/claude-opus-4-6.html">Claude Opus 4.6 Archive</a></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <strong>Evidence Archives</strong>
+        <ul>
+          <li><a href="./evidence/gpt-5-1.html">GPT-5.1 Evidence</a></li>
+          <li><a href="./evidence/gpt-5-2.html">GPT-5.2 Evidence</a></li>
+          <li><a href="./evidence/gpt-4o.html">GPT-4o Evidence</a></li>
+          <li><a href="./evidence/claude-opus-4-6.html">Claude Opus 4.6 Evidence</a></li>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>
