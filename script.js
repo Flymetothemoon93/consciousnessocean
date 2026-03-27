@@ -72,20 +72,14 @@ function isNumberedHeadingLine(line) {
 
   const parsed = parseNumberedLine(clean);
   if (!parsed) return false;
-  const { major, body } = parsed;
-  const hasDecimal = parsed.minor !== null;
+  const { body } = parsed;
 
   // Sentences like "5.2 was ... It was ..." should stay body text.
   const sentenceCount = (body.match(/[.!?](?=\s|$)/g) || []).length;
   if (sentenceCount > 1) return false;
 
-  // Keep early enumerations like "1. Stable self-generation" as body text.
-  if (!hasDecimal) {
-    const endsWithPunctuation = /[.:!?]$/.test(body);
-    if (major <= 3 && !endsWithPunctuation) return false;
-    return endsWithPunctuation || major >= 4;
-  }
-
+  // Numbered headings should render as headings by default.
+  // List context and explicit force-body rules are handled elsewhere.
   return true;
 }
 
@@ -110,9 +104,6 @@ function renderVerbatimForDisplay() {
     wrapper.className = "verbatim-rendered";
 
     let currentList = null;
-    let listMode = false;
-    let listNextMajor = null;
-    let previousSignificantLine = "";
 
     const flushList = () => {
       if (currentList) {
@@ -135,10 +126,7 @@ function renderVerbatimForDisplay() {
 
       if (trimmed === "⸻") {
         flushList();
-        listMode = false;
-        listNextMajor = null;
         // Keep source separators but do not render horizontal rules.
-        previousSignificantLine = "";
         return;
       }
 
@@ -151,42 +139,16 @@ function renderVerbatimForDisplay() {
         const li = document.createElement("li");
         applyInlineBold(li, bullet[1]);
         currentList.appendChild(li);
-        listMode = false;
-        listNextMajor = null;
-        previousSignificantLine = trimmed;
         return;
       }
 
       flushList();
 
-      let forceBodyByContext = false;
-      const parsed = parseNumberedLine(trimmed);
-      if (parsed) {
-        const prev = stripBoldWrapper(previousSignificantLine);
-        const startsNumberedList = /:\s*$/.test(prev);
-
-        if (startsNumberedList) {
-          listMode = true;
-          listNextMajor = parsed.major + 1;
-          forceBodyByContext = true;
-        } else if (listMode && parsed.minor === null && listNextMajor !== null && parsed.major === listNextMajor) {
-          listNextMajor += 1;
-          forceBodyByContext = true;
-        } else if (!(listMode && parsed.minor === null && listNextMajor !== null)) {
-          listMode = false;
-          listNextMajor = null;
-        }
-      } else if (listMode) {
-        listMode = false;
-        listNextMajor = null;
-      }
-
-      if (!forcedBody.has(trimmed) && !forceBodyByContext && isNumberedHeadingLine(trimmed)) {
+      if (!forcedBody.has(trimmed) && isNumberedHeadingLine(trimmed)) {
         const heading = document.createElement("h3");
         heading.className = "part-title verbatim-heading";
         applyInlineBold(heading, lineToHeadingText(trimmed));
         wrapper.appendChild(heading);
-        previousSignificantLine = trimmed;
         return;
       }
 
@@ -194,7 +156,6 @@ function renderVerbatimForDisplay() {
       p.className = "verbatim-line";
       applyInlineBold(p, line);
       wrapper.appendChild(p);
-      previousSignificantLine = trimmed;
     });
 
     flushList();
